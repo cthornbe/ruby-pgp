@@ -15,7 +15,7 @@ module GPG
     private
 
     def self.delete(path)
-      if File.exists?(path)
+      if File.exist?(path)
         File.delete(path)
       end
     end

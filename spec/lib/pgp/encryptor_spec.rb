@@ -23,7 +23,7 @@ describe PGP::Encryptor do
 
   describe '#encrypt' do
     after {
-      File.delete("some filename.txt") if File.exists?("some filename.txt")
+      File.delete("some filename.txt") if File.exist?("some filename.txt")
     }
 
     context 'When the Public Key is from a file' do

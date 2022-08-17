@@ -5,7 +5,7 @@ describe GPG::TempPathHelper do
     path = GPG::TempPathHelper.create
 
     expect(path.start_with?(Dir.tmpdir)).to eq(true)
-    expect(File.exists?(path)).to eq(false)
+    expect(File.exist?(path)).to eq(false)
   end
 
   it 'creates unique paths every time' do
@@ -27,10 +27,10 @@ describe GPG::TempPathHelper do
   it 'deletes the temporary file if it exists' do
     path = GPG::TempPathHelper.create do |p|
       File.write(p, 'test')
-      expect(File.exists?(p)).to eq(true)
+      expect(File.exist?(p)).to eq(true)
     end
 
-    expect(File.exists?(path)).to eq(false)
+    expect(File.exist?(path)).to eq(false)
   end
 
   it 'deletes the temporary file even when there is an exception in the block' do
@@ -40,7 +40,7 @@ describe GPG::TempPathHelper do
       GPG::TempPathHelper.create do |p|
         path = p
         File.write(p, 'test')
-        expect(File.exists?(p)).to eq(true)
+        expect(File.exist?(p)).to eq(true)
         value = 45 / 0
       end
     rescue
@@ -48,6 +48,6 @@ describe GPG::TempPathHelper do
     end
 
     expect(exception_raised).to eq(true)
-    expect(File.exists?(path)).to eq(false)
+    expect(File.exist?(path)).to eq(false)
   end
 end
